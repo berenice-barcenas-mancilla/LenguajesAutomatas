@@ -1,6 +1,7 @@
-import tkinter as tk  # Importa la biblioteca Tkinter para la interfaz gráfica
-from tkinter import simpledialog  # Importa el módulo simpledialog para crear un cuadro de diálogo
-from random import randrange  # Importa la función randrange para generar números aleatorios
+import random
+import tkinter as tk
+from tkinter.simpledialog import askinteger
+from tkinter import messagebox
 
 # Función para intercambiar elementos a[i] y a[j] en una lista
 def swap(A, i, j):
@@ -10,39 +11,38 @@ def swap(A, i, j):
 
 # Función para barajar una lista A
 def shuffle(A):
+    # Lista de lectura desde el índice más bajo hasta el más alto
     for i in range(len(A)):
-        j = randrange(i, len(A))  # Genera un índice aleatorio j desde i hasta el final de la lista
-        swap(A, i, j)  # Intercambia el elemento en la posición i con el elemento en la posición j
-
-def main():
-    root = tk.Tk()  # Crea una ventana principal
-    root.title("Algoritmo de Fisher Yates")  # Establece el título de la ventana
-    
-    num_elements = simpledialog.askinteger("Cantidad de Datos", "Ingrese la cantidad de datos que desea:")  # Muestra un cuadro de diálogo para que el usuario ingrese la cantidad de datos
-    
-    if num_elements is not None:  # Verifica si el usuario ingresó un valor válido
-        data = []  # Inicializa una lista vacía para almacenar los datos
-        
-        label = tk.Label(root, text=f"Cantidad de Datos: {num_elements}")  # Crea una etiqueta para mostrar la cantidad de datos ingresada
-        label.pack()  # Agrega la etiqueta a la ventana
-        
-        for i in range(num_elements):
-            entry = tk.Entry(root)  # Crea una entrada de texto para que el usuario ingrese un dato
-            entry.pack()  # Agrega la entrada a la ventana
-            data.append(entry)  # Agrega la entrada a la lista de datos
-        
-        def shuffle_and_print():
-            user_data = [int(entry.get()) for entry in data]  # Obtiene los datos ingresados por el usuario y los convierte en una lista de enteros
-            shuffle(user_data)  # Baraja la lista de datos
-            result_label.config(text=f"Lista barajada: {user_data}")  # Actualiza la etiqueta de resultados con la lista barajada
-        
-        shuffle_button = tk.Button(root, text="Barajar", command=shuffle_and_print)  # Crea un botón que llama a la función shuffle_and_print cuando se hace clic
-        shuffle_button.pack()  # Agrega el botón a la ventana
-        
-        result_label = tk.Label(root, text="")  # Crea una etiqueta vacía para mostrar los resultados
-        result_label.pack()  # Agrega la etiqueta de resultados a la ventana
-        
-        root.mainloop()  # Inicia el bucle principal de la interfaz gráfica
+        # Genera un número aleatorio j tal que i <= j < n
+        j = random.randrange(i, len(A))
+        # Realiza un intercambio del elemento actual con el índice generado aleatoriamente
+        swap(A, i, j)
 
 if __name__ == '__main__':
-    main()  # Llama a la función main cuando se ejecuta el programa
+    # Pedir al usuario cuántos datos quiere ingresar
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    num_data = askinteger("Ingresar datos", "Cuantos datos desea ingresar:")  # Pregunta al usuario cuántos datos desea ingresar
+
+    if num_data is not None:
+        data = []  # Lista para almacenar los datos ingresados por el usuario
+
+        for _ in range(num_data):
+            # Pedir al usuario un dato utilizando una ventana emergente
+            dato = askinteger("Ingresar dato", "Ingrese un dato:")  # Pide al usuario un dato y lo guarda en 'dato'
+            if dato is not None:
+                data.append(dato)  # Agrega el dato a la lista 'data'
+
+        if data:
+            shuffle(data)  # Barajar los datos ingresados por el usuario
+
+            # Crear una ventana emergente para mostrar la lista barajada
+            result_window = tk.Tk()
+            result_window.title("Lista Barajada")  # Establece el título de la ventana emergente
+            
+            # Crear una etiqueta para mostrar la lista barajada
+            result_label = tk.Label(result_window, text=str(data))  # Crea una etiqueta con la lista barajada
+            result_label.pack(padx=20, pady=20)  # Añade la etiqueta a la ventana con relleno
+            
+            result_window.mainloop()  # Muestra la ventana emergente y espera a que el usuario la cierre
