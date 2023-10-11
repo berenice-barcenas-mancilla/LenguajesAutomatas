@@ -5,7 +5,7 @@ from tkinter import messagebox
 # Función para mezclar la baraja usando el algoritmo de Fisher-Yates
 def mezclar_baraja():
     # Crear una baraja de cartas con todas las combinaciones de valor y palo
-    baraja = [(valor, palo) for valor in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] for palo in ['♥', '♦', '♣', '♠']]
+    baraja = [(valor, palo) for valor in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] for palo in ['corazon', 'diamante', 'trevol', 'pica']]
     random.shuffle(baraja)  # Mezclar la baraja de cartas
     return baraja
 
