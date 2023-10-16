@@ -4,8 +4,8 @@ class Graph:
         self.adjList = [[] for _ in range(n)]  # Crea una lista de adyacencia vacía con n vértices.
         # Agrega bordes al grafo no dirigido
         for (src, dest) in edges:
-            self.adjList[src].append(dest)  # Agrega el destino a la lista de adyacencia del origen.
-            self.adjList[dest].append(src)  # Agrega el origen a la lista de adyacencia del destino.
+            self.adjList[src].append(dest)  # Agrega el destino a la lista de adyacencia 
+            self.adjList[dest].append(src)  # Agrega el origen a la lista de adyacencia
 
 # Función para verificar si asignar un color a un vértice es seguro
 def isSafe(graph, color, v, c):
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     for i in range(num_edges):
         src, dest = map(int, input(f"Ingrese {i + 1} (separados por espacio): ").split())
-        edges.append((src, dest))  # Agrega la arista (origen, destino) a la lista de bordes.
+        edges.append((src, dest))  # Agrega la arista (x,y) a la lista de bordes.
 
     g = Graph(edges, n)  # Crea un objeto Graph con la lista de bordes y el número de vértices.
     color = [None] * n  # Inicializa una lista de colores con valores nulos para los vértices.
