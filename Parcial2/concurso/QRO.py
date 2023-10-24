@@ -30,7 +30,7 @@ def kPerson(g, persona, k, v, n):
 if __name__ == '__main__':
     n = int(input("Ingrese el número de municipios (n): "))  # Lee el número de vértices del usuario.
     k = int(input("Ingrese el número de personas (k): "))  # Lee el número de persona del usuario.
-    persona = []  # Inicializa una lista para almacenar los nombres de personas.
+    persona = ['', ]  # Inicializa una lista para almacenar los nombres de personas.
 
     for i in range(k):
         nombre_persona = input(f"Ingrese el nombre de la persona {i + 1}: ")  # Lee el nombre de cada persona.
