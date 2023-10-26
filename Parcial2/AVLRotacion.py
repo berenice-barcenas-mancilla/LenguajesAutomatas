@@ -74,12 +74,12 @@ def imprimir_arbol(nodo, nivel=0, prefijo="Raíz: "): #Función que imprime el �
         imprimir_arbol(nodo.derecha, nivel + 1, "Der: ")
 
 #Ejemplo preestablecido de un árbol AVL
-raiz = NodoAVL(10)  #Nodo raíz
-#raiz.izquierda = NodoAVL(20) #Nodo hijo izquierdo de la raíz
-raiz.derecha = NodoAVL(20)  #Nodo hijo derecho de la raíz
+raiz = NodoAVL(20)  #Nodo raíz
+raiz.izquierda = NodoAVL(10) #Nodo hijo izquierdo de la raíz
+#raiz.derecha = NodoAVL(20)  #Nodo hijo derecho de la raíz
 #raiz.izquierda.izquierda = NodoAVL(10) #Nodo hijo izquierdo del nodo hijo izquierdo 
-#raiz.izquierda.derecha = NodoAVL(15)   #Nodo hijo derecho del nodo hijo izquierdo 
-raiz.derecha.derecha = NodoAVL(30)    #Nodo hijo derecho del nodo hijo derecho 
+raiz.izquierda.derecha = NodoAVL(15)   #Nodo hijo derecho del nodo hijo izquierdo 
+#raiz.derecha.derecha = NodoAVL(30)    #Nodo hijo derecho del nodo hijo derecho 
 #raiz.derecha.izquierda = NodoAVL(20)    #Nodo hijo derecho del nodo hijo derecho 
 
 continuar = True
